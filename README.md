@@ -12,6 +12,6 @@
 ## Build
 
 ```bash
-cmake --preset` default
+cmake --preset default
 cmake --build --preset default
 build/2d_platformer
