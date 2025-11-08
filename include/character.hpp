@@ -15,7 +15,8 @@ public:
 
 private:
   sf::RenderWindow &window_;
-  sf::RectangleShape self_{sf::RectangleShape({40, 40})};
+  sf::Texture texture_{};
+  sf::Sprite sprite_{};
 
   sf::Vector2f velocity_{};
 };
