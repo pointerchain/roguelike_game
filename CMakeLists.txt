@@ -10,6 +10,7 @@ find_package(SFML COMPONENTS graphics window system REQUIRED)
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/character.cpp
+    src/input.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)

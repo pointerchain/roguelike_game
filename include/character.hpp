@@ -18,5 +18,4 @@ private:
   sf::RectangleShape self_{sf::RectangleShape({40, 40})};
 
   sf::Vector2f velocity_{};
-  sf::Vector2f distance_{};
 };

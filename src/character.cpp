@@ -11,7 +11,7 @@ Character::Character(sf::RenderWindow &window) : window_(window) {
 
 void Character::Update(const float dt, const UserInput user_input) {
   velocity_ = user_input.direction * Config::Character::kMoveSpeed;
-  distance_ = velocity_ * dt;
+  const auto distance_ = velocity_ * dt;
 
   self_.setPosition(self_.getPosition() + distance_);
 }
