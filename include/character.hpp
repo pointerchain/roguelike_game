@@ -10,6 +10,8 @@ class Character {
 public:
   Character(sf::RenderWindow &window);
 
+  sf::Vector2f GetPosition() const;
+
   void Update(const float dt, const UserInput user_input);
   void Draw();
 

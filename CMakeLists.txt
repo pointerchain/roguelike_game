@@ -12,6 +12,7 @@ add_executable(${PROJECT_NAME}
     src/input.cpp
     src/map.cpp
     src/character.cpp
+    src/camera.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)

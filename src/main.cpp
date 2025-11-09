@@ -1,6 +1,8 @@
 // main.cpp
 
+#include "camera.hpp"
 #include "character.hpp"
+#include "config.hpp"
 #include "input.hpp"
 #include "map.hpp"
 
@@ -10,19 +12,24 @@
 void Draw(sf::RenderWindow &window) {
   static sf::Clock clock{};
 
+  static Camera camera(window);
   static Map map(window);
   static Character character(window);
 
   const auto dt = clock.restart().asSeconds();
 
-  map.Draw();
-
   character.Update(dt, {Input::GetDirection()});
+  camera.Update(character.GetPosition());
+
+  camera.Draw();
+  map.Draw();
   character.Draw();
 }
 
 int main() {
-  sf::RenderWindow window(sf::VideoMode(800, 600), "Roguelike Game");
+  sf::RenderWindow window(sf::VideoMode(Config::Window::kWindowWidth,
+                                        Config::Window::kWindowHeight),
+                          "Roguelike Game");
 
   while (window.isOpen()) {
     sf::Event event;

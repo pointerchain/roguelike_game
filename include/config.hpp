@@ -4,9 +4,25 @@
 
 namespace Config {
 
+namespace Window {
+
+constexpr int kWindowWidth{400};
+constexpr int kWindowHeight{1000};
+
+} // namespace Window
+
 namespace Sprite {
 constexpr int kSize{32};
 }
+
+namespace Map {
+
+constexpr int kTileWidth{Sprite::kSize * 2};
+constexpr int kTileHeight{Sprite::kSize * 2};
+constexpr int kMapWidth{50};
+constexpr int kMapHeight{50};
+
+} // namespace Map
 
 namespace Character {
 
@@ -15,13 +31,6 @@ constexpr float kMoveSpeed{500.f};
 
 } // namespace Character
 
-namespace Map {
-
-constexpr int kTileWidth{32};
-constexpr int kTileHeight{32};
-constexpr int kMapWidth{50};
-constexpr int kMapHeight{50};
-
-} // namespace Map
+namespace Camera {} // namespace Camera
 
 } // namespace Config
