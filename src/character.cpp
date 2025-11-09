@@ -6,11 +6,12 @@
 Character::Character(sf::RenderWindow &window) : window_(window) {
   texture_.loadFromFile("assets/rogues.png");
   sprite_.setTexture(texture_);
-  sprite_.setTextureRect({32, 0, 32, 32});
+  sprite_.setTextureRect(
+      {Config::Sprite::kSize, 0, Config::Sprite::kSize, Config::Sprite::kSize});
 
   sprite_.setScale(
       {Config::Character::kSpriteScale, Config::Character::kSpriteScale});
-  sprite_.setOrigin({32 / 2.f, 32 / 2.f});
+  sprite_.setOrigin({Config::Sprite::kSize / 2.f, Config::Sprite::kSize / 2.f});
   sprite_.setPosition({window_.getSize().x / 2.f, window_.getSize().y / 2.f});
 }
 

@@ -2,19 +2,29 @@
 
 #include "character.hpp"
 #include "input.hpp"
+#include "map.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <print>
 
+void Draw(sf::RenderWindow &window) {
+  static sf::Clock clock{};
+
+  static Map map(window);
+  static Character character(window);
+
+  const auto dt = clock.restart().asSeconds();
+
+  map.Draw();
+
+  character.Update(dt, {Input::GetDirection()});
+  character.Draw();
+}
+
 int main() {
   sf::RenderWindow window(sf::VideoMode(800, 600), "Roguelike Game");
-  sf::Clock clock{};
-
-  Character character(window);
 
   while (window.isOpen()) {
-    const auto dt = clock.restart().asSeconds();
-
     sf::Event event;
     while (window.pollEvent(event)) {
       switch (event.type) {
@@ -27,8 +37,7 @@ int main() {
 
     window.clear();
 
-    character.Update(dt, {Input::GetDirection()});
-    character.Draw();
+    Draw(window);
 
     window.display();
   }
