@@ -6,13 +6,11 @@
 
 class Map {
 public:
-  Map(sf::RenderWindow &window);
+  Map();
 
-  void Draw();
+  void Draw(sf::RenderWindow &window);
 
 private:
-  sf::RenderWindow &window_;
-
   sf::Texture texture_{};
   sf::VertexArray tiles_{};
 

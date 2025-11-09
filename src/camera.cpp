@@ -2,14 +2,14 @@
 
 #include "camera.hpp"
 
-Camera::Camera(sf::RenderWindow &window) : window_(window) {
-  view_.setSize(window_.getSize().x, window_.getSize().y);
-  view_.setCenter(window_.getSize().x / 2.f, window_.getSize().y / 2.f);
+Camera::Camera(const sf::Vector2u window_size) {
+  Update(window_size, {window_size.x / 2.f, window_size.y / 2.f});
 }
 
-void Camera::Update(const sf::Vector2f look_position) {
-  view_.setSize(window_.getSize().x, window_.getSize().y);
+void Camera::Update(const sf::Vector2u window_size,
+                    const sf::Vector2f look_position) {
+  view_.setSize(window_size.x, window_size.y);
   view_.setCenter(look_position);
 }
 
-void Camera::Draw() { window_.setView(view_); }
+void Camera::Draw(sf::RenderWindow &window) { window.setView(view_); }

@@ -10,15 +10,14 @@
 enum class CharacterState { kNormal, kDashing };
 class Character {
 public:
-  Character(sf::RenderWindow &window);
+  Character(const sf::Vector2u window_size);
 
   sf::Vector2f GetPosition() const;
 
   void Update(const float dt, const UserInput user_input);
-  void Draw();
+  void Draw(sf::RenderWindow &window);
 
 private:
-  sf::RenderWindow &window_;
   sf::Texture texture_{};
   sf::Sprite sprite_{};
 

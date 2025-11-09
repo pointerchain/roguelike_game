@@ -3,18 +3,18 @@
 #include "map.hpp"
 #include "config.hpp"
 
-Map::Map(sf::RenderWindow &window) : window_(window) {
+Map::Map() {
   texture_.loadFromFile("assets/tiles.png");
   tiles_.setPrimitiveType(sf::Quads);
 
   Load();
 }
 
-void Map::Draw() {
+void Map::Draw(sf::RenderWindow &window) {
   sf::RenderStates render_states{};
   render_states.texture = &texture_;
 
-  window_.draw(tiles_, render_states);
+  window.draw(tiles_, render_states);
 }
 
 void Map::Load() {

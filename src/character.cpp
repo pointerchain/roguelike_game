@@ -3,7 +3,7 @@
 #include "character.hpp"
 #include "config.hpp"
 
-Character::Character(sf::RenderWindow &window) : window_(window) {
+Character::Character(const sf::Vector2u window_size){
   texture_.loadFromFile("assets/rogues.png");
   sprite_.setTexture(texture_);
   sprite_.setTextureRect(
@@ -12,7 +12,7 @@ Character::Character(sf::RenderWindow &window) : window_(window) {
   sprite_.setScale(
       {Config::Character::kSpriteScale, Config::Character::kSpriteScale});
   sprite_.setOrigin({Config::Sprite::kSize / 2.f, Config::Sprite::kSize / 2.f});
-  sprite_.setPosition({window_.getSize().x / 2.f, window_.getSize().y / 2.f});
+  sprite_.setPosition({window_size.x / 2.f, window_size.y / 2.f});
 }
 
 sf::Vector2f Character::GetPosition() const { return sprite_.getPosition(); }
@@ -66,4 +66,4 @@ void Character::Update(const float dt, const UserInput user_input) {
   sprite_.setPosition(sprite_.getPosition() + velocity_ * dt);
 }
 
-void Character::Draw() { window_.draw(sprite_); }
+void Character::Draw(sf::RenderWindow &window) { window.draw(sprite_); }

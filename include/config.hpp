@@ -18,7 +18,7 @@ namespace Sprite {
 
 constexpr int kSize{32};
 
-}
+} // namespace Sprite
 
 namespace Map {
 

@@ -22,9 +22,9 @@ private:
                        Config::Window::kName)};
   sf::Clock clock{};
 
-  Camera camera_{window_};
-  Map map_{window_};
-  Character character_{window_};
+  Camera camera_{window_.getSize()};
+  Map map_{};
+  Character character_{window_.getSize()};
 
   void ProcessEvents();
   void Update();

@@ -6,12 +6,11 @@
 
 class Camera {
 public:
-  Camera(sf::RenderWindow &window);
+  Camera(const sf::Vector2u window_size);
 
-  void Update(const sf::Vector2f look_position);
-  void Draw();
+  void Update(const sf::Vector2u window_size, const sf::Vector2f look_position);
+  void Draw(sf::RenderWindow &window);
 
 private:
-  sf::RenderWindow &window_;
   sf::View view_{};
 };

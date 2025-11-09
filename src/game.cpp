@@ -32,13 +32,13 @@ void Game::Update() {
   const auto dt = clock.restart().asSeconds();
 
   character_.Update(dt, Input::GetUserInput());
-  camera_.Update(character_.GetPosition());
+  camera_.Update(window_.getSize(), character_.GetPosition());
 }
 
 void Game::Draw() {
-  camera_.Draw();
-  map_.Draw();
-  character_.Draw();
+  camera_.Draw(window_);
+  map_.Draw(window_);
+  character_.Draw(window_);
 }
 
 void Game::Display() { window_.display(); }
