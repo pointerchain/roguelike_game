@@ -15,7 +15,9 @@ constexpr int kWindowHeight{1000};
 } // namespace Window
 
 namespace Sprite {
+
 constexpr int kSize{32};
+
 }
 
 namespace Map {
@@ -30,7 +32,9 @@ constexpr int kMapHeight{50};
 namespace Character {
 
 constexpr float kSpriteScale{2.5f};
-constexpr float kMoveSpeed{500.f};
+
+constexpr float kAcceleration{5250.f};
+constexpr float kDrag{8.5f};
 
 } // namespace Character
 

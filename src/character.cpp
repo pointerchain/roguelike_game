@@ -18,8 +18,11 @@ Character::Character(sf::RenderWindow &window) : window_(window) {
 sf::Vector2f Character::GetPosition() const { return sprite_.getPosition(); }
 
 void Character::Update(const float dt, const UserInput user_input) {
-  velocity_ = user_input.direction * Config::Character::kMoveSpeed;
-  const auto distance_ = velocity_ * dt;
+  const auto acceleration =
+      user_input.direction * Config::Character::kAcceleration;
+  const auto friction = -velocity_ * Config::Character::kDrag;
+
+  velocity_ += (acceleration + friction) * dt;
 
   if (user_input.direction.x != 0) {
     if (user_input.direction.x > 0) {
@@ -31,7 +34,7 @@ void Character::Update(const float dt, const UserInput user_input) {
     }
   }
 
-  sprite_.setPosition(sprite_.getPosition() + distance_);
+  sprite_.setPosition(sprite_.getPosition() + velocity_ * dt);
 }
 
 void Character::Draw() { window_.draw(sprite_); }
