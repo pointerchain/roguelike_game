@@ -2,9 +2,10 @@
 
 #include "input.hpp"
 
+#include <SFML/Window/Keyboard.hpp>
 #include <cmath>
 
-namespace Input {
+namespace {
 
 sf::Vector2f GetDirection() {
   sf::Vector2f direction{};
@@ -31,6 +32,17 @@ sf::Vector2f GetDirection() {
   }
 
   return direction;
+}
+
+} // namespace
+
+namespace Input {
+
+UserInput GetUserInput() {
+  const auto direction = GetDirection();
+  const auto dash_requested = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+
+  return {direction, dash_requested};
 }
 
 } // namespace Input

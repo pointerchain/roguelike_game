@@ -31,7 +31,7 @@ void Game::ProcessEvents() {
 void Game::Update() {
   const auto dt = clock.restart().asSeconds();
 
-  character_.Update(dt, {Input::GetDirection()});
+  character_.Update(dt, Input::GetUserInput());
   camera_.Update(character_.GetPosition());
 }
 

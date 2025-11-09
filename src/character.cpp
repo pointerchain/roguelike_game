@@ -18,20 +18,49 @@ Character::Character(sf::RenderWindow &window) : window_(window) {
 sf::Vector2f Character::GetPosition() const { return sprite_.getPosition(); }
 
 void Character::Update(const float dt, const UserInput user_input) {
-  const auto acceleration =
-      user_input.direction * Config::Character::kAcceleration;
-  const auto friction = -velocity_ * Config::Character::kDrag;
 
-  velocity_ += (acceleration + friction) * dt;
+  switch (state_) {
+  case CharacterState::kNormal: {
+    const auto acceleration =
+        user_input.direction * Config::Character::kAcceleration;
+    const auto friction = -velocity_ * Config::Character::kDrag;
 
-  if (user_input.direction.x != 0) {
-    if (user_input.direction.x > 0) {
-      sprite_.setScale(
-          {-Config::Character::kSpriteScale, Config::Character::kSpriteScale});
-    } else {
-      sprite_.setScale(
-          {Config::Character::kSpriteScale, Config::Character::kSpriteScale});
+    velocity_ += (acceleration + friction) * dt;
+
+    if (user_input.direction.x != 0) {
+      if (user_input.direction.x > 0) {
+        sprite_.setScale({-Config::Character::kSpriteScale,
+                          Config::Character::kSpriteScale});
+      } else {
+        sprite_.setScale(
+            {Config::Character::kSpriteScale, Config::Character::kSpriteScale});
+      }
     }
+
+    if (user_input.dash_requested && user_input.direction != sf::Vector2f{} &&
+        dash_cooldown_timer_ >= dash_cooldown_) {
+      dash_direction_ = user_input.direction;
+      dash_cooldown_timer_ = 0;
+      state_ = CharacterState::kDashing;
+    }
+
+    dash_cooldown_timer_ += dt;
+
+    break;
+  }
+  case CharacterState::kDashing: {
+    velocity_ = dash_direction_ * dash_speed_;
+
+    if (dash_timer_ >= dash_duration_) {
+      dash_timer_ = 0;
+      velocity_ = dash_direction_ * (dash_speed_ / 5.f);
+      state_ = CharacterState::kNormal;
+    }
+
+    dash_timer_ += dt;
+
+    break;
+  }
   }
 
   sprite_.setPosition(sprite_.getPosition() + velocity_ * dt);

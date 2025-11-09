@@ -4,8 +4,12 @@
 
 #include <SFML/Graphics.hpp>
 
+struct UserInput {
+  const sf::Vector2f direction;
+  const bool dash_requested;
+};
 namespace Input {
 
-sf::Vector2f GetDirection();
+UserInput GetUserInput();
 
 }

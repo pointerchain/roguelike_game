@@ -36,6 +36,10 @@ constexpr float kSpriteScale{2.5f};
 constexpr float kAcceleration{5250.f};
 constexpr float kDrag{8.5f};
 
+constexpr float kDashDefaultSpeed{2750.f};
+constexpr float kDashDefaultDuration{0.25f};
+constexpr float kDashDefaultCooldown{2.f};
+
 } // namespace Character
 
 namespace Camera {} // namespace Camera
