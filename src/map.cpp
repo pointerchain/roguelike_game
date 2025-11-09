@@ -30,11 +30,18 @@ void Map::Load() {
       sf::Vertex vertex_bl(
           sf::Vector2f(x_offset, y_offset + Config::Map::kTileHeight));
 
-      vertex_tl.texCoords = sf::Vector2f(0, 0);
-      vertex_tr.texCoords = sf::Vector2f(Config::Sprite::kSize, 0);
+      // For flat border tile vs bottom border tile
+      const int x_texture_offset = y == Config::Map::kMapHeight - 1 ? 32 : 0;
+      const int y_texture_offset = Config::Sprite::kSize * 0;
+
+      vertex_tl.texCoords = sf::Vector2f(x_texture_offset, y_texture_offset);
+      vertex_tr.texCoords = sf::Vector2f(
+          x_texture_offset + Config::Sprite::kSize, y_texture_offset);
       vertex_br.texCoords =
-          sf::Vector2f(Config::Sprite::kSize, Config::Sprite::kSize);
-      vertex_bl.texCoords = sf::Vector2f(0, Config::Sprite::kSize);
+          sf::Vector2f(x_texture_offset + Config::Sprite::kSize,
+                       Config::Sprite::kSize + y_texture_offset);
+      vertex_bl.texCoords = sf::Vector2f(
+          x_texture_offset, Config::Sprite::kSize + y_texture_offset);
 
       tiles_.append(vertex_tl);
       tiles_.append(vertex_tr);

@@ -3,14 +3,14 @@
 #include "character.hpp"
 #include "config.hpp"
 
-Character::Character(const sf::Vector2u window_size){
+Character::Character(const sf::Vector2u window_size) {
   texture_.loadFromFile("assets/rogues.png");
   sprite_.setTexture(texture_);
   sprite_.setTextureRect(
       {Config::Sprite::kSize, 0, Config::Sprite::kSize, Config::Sprite::kSize});
 
   sprite_.setScale(
-      {Config::Character::kSpriteScale, Config::Character::kSpriteScale});
+    {Config::Character::kSpriteScale, Config::Character::kSpriteScale});
   sprite_.setOrigin({Config::Sprite::kSize / 2.f, Config::Sprite::kSize / 2.f});
   sprite_.setPosition({window_size.x / 2.f, window_size.y / 2.f});
 }
@@ -63,7 +63,26 @@ void Character::Update(const float dt, const UserInput user_input) {
   }
   }
 
-  sprite_.setPosition(sprite_.getPosition() + velocity_ * dt);
+  auto next_position = sprite_.getPosition() + velocity_ * dt;
+
+  const auto x_border_position =
+      Config::Map::kMapWidth * Config::Map::kTileWidth;
+  const auto y_border_position =
+      Config::Map::kMapHeight * Config::Map::kTileHeight -
+      Config::Map::kTileWidth;
+
+  if (next_position.x < 0) {
+    next_position.x = 0;
+  } else if (next_position.x > x_border_position) {
+    next_position.x = x_border_position;
+  }
+  if (next_position.y < 0) {
+    next_position.y = 0;
+  } else if (next_position.y > y_border_position) {
+    next_position.y = y_border_position;
+  }
+
+  sprite_.setPosition(next_position);
 }
 
 void Character::Draw(sf::RenderWindow &window) { window.draw(sprite_); }
