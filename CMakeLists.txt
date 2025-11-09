@@ -9,6 +9,7 @@ find_package(SFML COMPONENTS graphics window system REQUIRED)
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
+    src/game.cpp
     src/input.cpp
     src/map.cpp
     src/character.cpp

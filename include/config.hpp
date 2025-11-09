@@ -2,9 +2,12 @@
 
 #pragma once
 
+#include <string>
 namespace Config {
 
 namespace Window {
+
+constexpr std::string kName{"Roguelike Game"};
 
 constexpr int kWindowWidth{400};
 constexpr int kWindowHeight{1000};
