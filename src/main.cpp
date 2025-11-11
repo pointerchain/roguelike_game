@@ -1,8 +1,9 @@
 // main.cpp
 
-#include "game.hpp"
 #include <SFML/Graphics.hpp>
 #include <print>
+
+#include "game.hpp"
 
 int main() {
   Game game{};

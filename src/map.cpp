@@ -1,6 +1,7 @@
 // map.cpp
 
 #include "map.hpp"
+
 #include "config.hpp"
 
 Map::Map() {
@@ -20,8 +21,10 @@ void Map::Draw(sf::RenderWindow &window) {
 void Map::Load() {
   for (int x = 0; x < Config::Map::kMapWidth; ++x) {
     const int x_offset{x * Config::Map::kTileWidth};
+
     for (int y = 0; y < Config::Map::kMapHeight; ++y) {
       const int y_offset{y * Config::Map::kTileHeight};
+
       sf::Vertex vertex_tl(sf::Vector2f(x_offset, y_offset));
       sf::Vertex vertex_tr(
           sf::Vector2f(x_offset + Config::Map::kTileWidth, y_offset));

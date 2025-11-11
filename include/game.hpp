@@ -2,29 +2,30 @@
 
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 #include "camera.hpp"
 #include "character.hpp"
 #include "config.hpp"
+#include "enemy.hpp"
 #include "map.hpp"
 
-#include <SFML/Graphics.hpp>
-
 class Game {
-public:
+ public:
   Game();
 
   void Run();
 
-private:
+ private:
   sf::RenderWindow window_{
-      sf::RenderWindow(sf::VideoMode(Config::Window::kWindowWidth,
-                                     Config::Window::kWindowHeight),
+      sf::RenderWindow(sf::VideoMode(Config::Window::kWindowWidth, Config::Window::kWindowHeight),
                        Config::Window::kName)};
   sf::Clock clock{};
 
-  Camera camera_{window_.getSize()};
   Map map_{};
   Character character_{window_.getSize()};
+  Camera camera_{window_.getSize()};
+  std::vector< Enemy> enemies_;
 
   void ProcessEvents();
   void Update();

@@ -14,6 +14,7 @@ add_executable(${PROJECT_NAME}
     src/map.cpp
     src/character.cpp
     src/camera.cpp
+    src/enemy.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)

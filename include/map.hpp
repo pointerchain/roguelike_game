@@ -5,12 +5,12 @@
 #include <SFML/Graphics.hpp>
 
 class Map {
-public:
+ public:
   Map();
 
   void Draw(sf::RenderWindow &window);
 
-private:
+ private:
   sf::Texture texture_{};
   sf::VertexArray tiles_{};
 

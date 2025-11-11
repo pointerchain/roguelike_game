@@ -2,14 +2,14 @@
 
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 #include "config.hpp"
 #include "input.hpp"
 
-#include <SFML/Graphics.hpp>
-
 enum class CharacterState { kNormal, kDashing };
 class Character {
-public:
+ public:
   Character(const sf::Vector2u window_size);
 
   sf::Vector2f GetPosition() const;
@@ -17,7 +17,7 @@ public:
   void Update(const float dt, const UserInput user_input);
   void Draw(sf::RenderWindow &window);
 
-private:
+ private:
   sf::Texture texture_{};
   sf::Sprite sprite_{};
 

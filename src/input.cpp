@@ -23,8 +23,7 @@ sf::Vector2f GetDirection() {
     ++direction.x;
   }
 
-  const auto magnitude =
-      std::sqrt(direction.x * direction.x + direction.y * direction.y);
+  const auto magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
   if (magnitude != 0) {
     direction.x /= magnitude;
@@ -34,7 +33,7 @@ sf::Vector2f GetDirection() {
   return direction;
 }
 
-} // namespace
+}  // namespace
 
 namespace Input {
 
@@ -45,4 +44,4 @@ UserInput GetUserInput() {
   return {direction, dash_requested};
 }
 
-} // namespace Input
+}  // namespace Input
